@@ -1,4 +1,4 @@
-import Header from './components/Header/Header';
+import Header from './components/Header';
 import ColorGrid from './components/ColorGrid';
 import Footer from './components/Footer';
 
