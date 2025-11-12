@@ -4,24 +4,35 @@ import type { Color } from "../data/Colors";
 type HeaderProps = {
   color?: Color;
   revealDuration?: number; // in seconds
+  round?: number;
+  maxRounds?: number;
+  gameOver?: boolean;
 };
 
-const TITLE = "Welk vak heeft de kleur:";
+const DEFAULT_TITLE = "Welk vak heeft de kleur:";
 
-export default function Header({ color, revealDuration = 2 }: HeaderProps) {
+export default function Header({ color, revealDuration = 2, round, maxRounds, gameOver = false}: HeaderProps) {
   const [showColor, setShowColor] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (!color) {
-      setShowColor(false);
-      return;
+  const [title, setTitle] = useState<string>(DEFAULT_TITLE);
+   useEffect(() => {
+    if (!color) { 
+      setShowColor(false); return; 
     }
 
     setShowColor(true);
     const t = setTimeout(() => setShowColor(false), revealDuration * 1000);
     return () => clearTimeout(t);
-  }, [color, revealDuration]);
+  }, [color, revealDuration, round]);
 
+    useEffect(() => {
+    if ((round ?? 0) >= (maxRounds ?? 10)) {
+      setTitle("Game Over!");
+      return;
+    } else {
+      setTitle(DEFAULT_TITLE);
+    }
+      
+  }, [round, maxRounds]);
   return (
     <header className="bg-[#060606] text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -35,8 +46,8 @@ export default function Header({ color, revealDuration = 2 }: HeaderProps) {
 
           <div className="flex justify-center">
             <h1 className="text-lg md:text-2xl font-semibold tracking-tight">
-              {TITLE}{" "}
-              {showColor && (
+              {title}{" "}
+              {showColor && !gameOver && (
                 <span style={{ color: color?.hex ?? "white" }}>
                   {color?.name ?? ""}
                 </span>
