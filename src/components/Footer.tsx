@@ -4,7 +4,7 @@ return (
     <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
             <a href="" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                <img src="src/assets/logo.png" className="h-8" alt="Game Logo" />
+                <img src="public/assets/logo.png" className="h-8" alt="Game Logo" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">React-a-Color</span>
             </a>
             <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">

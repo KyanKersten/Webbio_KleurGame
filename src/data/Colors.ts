@@ -12,6 +12,4 @@ export const COLORS: Color[] = [
 {name: "Blauw", hex: "#00A6F5"},
 {name: "Paars", hex: "#8E51FF"},
 {name: "Roze", hex: "#F7339A"},
-{name: "Bruin", hex: "#A0522D"},
-{name: "Grijs", hex: "#808080"},
 ]
