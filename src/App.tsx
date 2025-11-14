@@ -41,7 +41,7 @@ function App() {
  useEffect(() => {
     if (!acceptingAnswers && !hasAlreadyAnswered && !gameOver) {
       setRound(prev => {
-        if (prev >= MAX_ROUNDS) {
+        if (prev > MAX_ROUNDS) {
           setGameOver(true);
           return prev;
         }
