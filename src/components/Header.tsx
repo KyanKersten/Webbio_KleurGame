@@ -48,7 +48,7 @@ export default function Header({ color, revealDuration = 2, round, maxRounds, ga
             </h1>
           </div>
           <h1 className="text-lg md:text-2xl font-semibold tracking-tight">
-            {!isGameOver && round && maxRounds ? `Ronde ${round} / ${maxRounds}` : ""}
+            {`Ronde ${round} / ${maxRounds}`}
           </h1>
           <div />
         </div>
