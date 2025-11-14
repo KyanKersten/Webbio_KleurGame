@@ -28,24 +28,34 @@ function App() {
   const [gameOver, setGameOver] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState(0);
+  const [reactionTime, setReactionTime] = useState<number>(0);
 
   const clickLockedRef = useRef(false);
+  const startTimeRef = useRef<number>(Date.now());
 
-  useEffect(() => {
+   useEffect(() => {
     if (gameOver) return;
+
+    const prevAnswered = hasAlreadyAnswered;
 
     clickLockedRef.current = false;
     setHasAlreadyAnswered(false);
     setAcceptingAnswers(true);
 
+    if (!prevAnswered) {
+      setReactionTime(0);
+    }
+
+    startTimeRef.current = Date.now();
+
     const timer = setTimeout(() => {
-      if (!hasAlreadyAnswered && !gameOver) {
+      if (!clickLockedRef.current && !gameOver) {
         clickLockedRef.current = true;
         setHasAlreadyAnswered(true);
         setAcceptingAnswers(false);
+        setReactionTime(REVEAL_DURATION * 1000);
 
         setWrongAnswers(prev => prev + 1);
-        alert(`Time's up! The correct color was ${target.name}.`);
 
         nextRound();
       }
@@ -64,21 +74,25 @@ function App() {
     setHasAlreadyAnswered(true);
     setAcceptingAnswers(false);
 
-    const correct = color.name === target.name;
+    const reaction = Date.now() - startTimeRef.current;
+    setReactionTime(reaction);
+
+    const correct = color.name === target.name; 
     if (correct) setCorrectAnswers(prev => prev + 1);
     else setWrongAnswers(prev => prev + 1);
-
-    alert(correct ? "Correct!" : `Wrong! It was ${target.name}.`);
 
     nextRound();
   } 
 
-  function nextRound() {
-    if (round >= MAX_ROUNDS) {
-      setGameOver(true);
-      return;
-    }
-    setRound(prev => prev + 1);
+    function nextRound() {
+    setRound(prev => {
+      if (prev >= MAX_ROUNDS) {
+        setGameOver(true);
+        return prev;
+      }
+      return prev + 1;
+    });
+
     setTarget(prev => pickRandomDifferent(prev.name));
   }
 
@@ -99,15 +113,15 @@ function App() {
 
       <main>
         <ColorGrid onSelect={handleColorClick} />
-        <ScoreBoard correctAnswers={correctAnswers} wrongAnswers={wrongAnswers} />
-        {gameOver && (
+        <ScoreBoard correctAnswers={correctAnswers} wrongAnswers={wrongAnswers} reactionTime={reactionTime} />
+        {/* {gameOver && (
           <button
             onClick={resetGame}
             className="mt-4 p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
           >
             Restart Game
           </button>
-        )}
+        )} */}
       </main>
 
       <Footer />
