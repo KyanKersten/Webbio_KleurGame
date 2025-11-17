@@ -40,8 +40,6 @@ function App() {
 
     startTimeRef.current = Date.now();
 
-    setReactionTime(0);
-
     const timer = setTimeout(() => {
       if (!clickLockedRef.current && !gameOver) {
         clickLockedRef.current = true;
