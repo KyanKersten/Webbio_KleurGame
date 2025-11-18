@@ -33,7 +33,7 @@ export default function Header({ color, revealDuration = 2, round, maxRounds, ga
           <div className="flex items-center">
             <a className="block" href="#">
               <span className="sr-only">Home</span>
-              <img src="src/assets/logo.png" alt="Logo" className="h-8" />
+              <img src="public/assets/logo.png" alt="Logo" className="h-8" />
             </a>
           </div>
 
