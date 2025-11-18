@@ -7,7 +7,7 @@ import { COLORS, type Color } from "./data/Colors";
 
 import "./index.css";
 
-const REVEAL_DURATION = 4; // seconds
+const REVEAL_DURATION = 2; // seconds
 const MAX_ROUNDS = 10;
 
 function pickRandomDifferent(currentName?: string) {
@@ -94,19 +94,38 @@ function nextRound() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header color={target} revealDuration={REVEAL_DURATION} round={round} maxRounds={MAX_ROUNDS} gameOver={gameOver} />
+      <Header
+        color={target}
+        revealDuration={REVEAL_DURATION}
+        round={round}
+        maxRounds={MAX_ROUNDS}
+        gameOver={gameOver}
+      />
 
-      <main>
-        <ColorGrid onSelect={handleColorClick} />
-        <ScoreBoard correctAnswers={correctAnswers} wrongAnswers={wrongAnswers} reactionTime={reactionTime} />
-        {/* {gameOver && (
-          <button
-            onClick={resetGame}
-            className="mt-4 p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          >
-            Restart Game
-          </button>
-        )} */}
+      <main className="flex-1 flex justify-center">
+        <div className="w-full max-w-6xl px-4 py-6 flex gap-6 items-start">
+          <aside className="w-56 flex-shrink-0">
+            <ScoreBoard
+              correctAnswers={correctAnswers}
+              wrongAnswers={wrongAnswers}
+              reactionTime={reactionTime}
+            />
+          </aside>
+
+          <section className="flex-1">
+            <ColorGrid onSelect={handleColorClick} />
+            {gameOver && (
+              <div className="mt-4">
+                <button
+                  onClick={resetGame}
+                  className="p-2 bg-green-600 text-white rounded hover:bg-green-700"
+                >
+                  Restart Game
+                </button>
+              </div>
+            )}
+          </section>
+        </div>
       </main>
 
       <Footer />

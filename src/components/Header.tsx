@@ -9,7 +9,7 @@ type HeaderProps = {
   gameOver?: boolean;
 };
 
-const DEFAULT_TITLE = "Welk vak heeft de kleur:";
+const DEFAULT_TITLE = "Klik snel op de kleur:";
 
 export default function Header({ color, revealDuration = 2, round, maxRounds, gameOver = false}: HeaderProps) {
   const [showColor, setShowColor] = useState<boolean>(false);

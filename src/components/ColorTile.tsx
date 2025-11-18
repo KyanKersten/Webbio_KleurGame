@@ -5,7 +5,7 @@ type ColorTileProps = {
   onClick?: (color: Color) => void;
 };
 
-function ColorTile({ color, onClick }: ColorTileProps) {
+export default function ColorTile({ color, onClick }: ColorTileProps) {
   return (
     <button
       type="button"
@@ -17,5 +17,3 @@ function ColorTile({ color, onClick }: ColorTileProps) {
     />
   );
 }
-
-export default ColorTile;

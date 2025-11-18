@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-function ScoreBoard({
+export default function ScoreBoard({
   correctAnswers,
   wrongAnswers,
   reactionTime,
@@ -57,5 +57,3 @@ function ScoreBoard({
     </div>
   );
 }
-
-export default ScoreBoard;
