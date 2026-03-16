@@ -20,7 +20,7 @@ export default function EndScore({
       ? (reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length / 1000).toFixed(2)
       : "-";
 
-      // Pr test
+      // LLALALALALAAL 
   return (
     <div
       role="dialog"
