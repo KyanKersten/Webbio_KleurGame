@@ -37,16 +37,25 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      testIgnore: ['**/tests/accessibility/**'],
     },
 
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
+      testIgnore: ['**/tests/accessibility/**'],
     },
 
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+      testIgnore: ['**/tests/accessibility/**'],
+    },
+
+    {
+      name: 'a11y',
+      testMatch: ['**/tests/accessibility/**/*.spec.ts'],
+      use: { ...devices['Desktop Chrome'] },
     },
 
     /* Test against mobile viewports. */
