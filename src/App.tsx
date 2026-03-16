@@ -130,6 +130,9 @@ function App() {
 
       <main className="flex-1 flex justify-center">
         <div className="w-full max-w-6xl px-4 py-6 flex gap-6 items-start">
+          {/* Intentional a11y violation for test verification: empty link has no accessible name */}
+          <a href="#"></a>
+
           <aside className="w-56 flex-shrink-0">
             <ScoreBoard
               correctAnswers={correctAnswers}

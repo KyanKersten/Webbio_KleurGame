@@ -39,6 +39,15 @@ export default function GameRules({
             Tijd per ronde: {revealDuration} seconden.
           </div>
 
+          {/* Intentional WCAG violation for test demo: input has no associated label */}
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Testveld zonder label"
+              className="w-full rounded border border-neutral-700 bg-[#111] px-3 py-2 text-sm"
+            />
+          </div>
+
           <div className="flex justify-end gap-3">
             <button
               onClick={onStart}
