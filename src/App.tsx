@@ -35,19 +35,14 @@ function App() {
   const [wrongAnswers, setWrongAnswers] = useState(0);
 
   const [reactionTimes, setReactionTimes] = useState<number[]>([0]);
-
-  const clickLockedRef = useRef(false);
   const startTimeRef = useRef<number>(Date.now());
 
   useEffect(() => {
     if (gameOver || !started) return;
-
-    clickLockedRef.current = false;
     startTimeRef.current = Date.now();
 
     const timer = setTimeout(() => {
-      if (!clickLockedRef.current && !gameOver) {
-        clickLockedRef.current = true;
+      if (!gameOver) {
         setReactionTimes((prev) => [...prev, REVEAL_DURATION * 1000]);
         setWrongAnswers((prev) => prev + 1);
 
@@ -60,10 +55,7 @@ function App() {
 
   function handleColorClick(color: Color) {
     if (gameOver || !started) return;
-    if (clickLockedRef.current) return;
     if (!target) return;
-
-    clickLockedRef.current = true;
 
     const reaction = Date.now() - startTimeRef.current;
     setReactionTimes((prev) => [...prev, reaction]);
@@ -101,7 +93,6 @@ function App() {
     setReactionTimes([]);
     setGameOver(false);
     setTarget(COLORS[Math.floor(Math.random() * COLORS.length)]);
-    clickLockedRef.current = false;
   }
 
   function resetGame() {
@@ -130,7 +121,7 @@ function App() {
 
       <main className="flex-1 flex justify-center">
         <div className="w-full max-w-6xl px-4 py-6 flex gap-6 items-start">
-          <aside className="w-56 flex-shrink-0">
+          <aside className="w-56 shrink-0">
             <ScoreBoard
               correctAnswers={correctAnswers}
               wrongAnswers={wrongAnswers}
