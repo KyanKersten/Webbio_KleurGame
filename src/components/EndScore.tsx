@@ -24,7 +24,7 @@ export default function EndScore({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[1200] flex items-center justify-center p-4"
+      className="fixed inset-0 z-1200 flex items-center justify-center p-4"
     >
       <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
 
